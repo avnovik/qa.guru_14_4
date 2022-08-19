@@ -13,7 +13,7 @@ public class StudentFormTest {
     @BeforeAll
     static void configure() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "600x1200";
+        Configuration.browserSize = "1200x800";
     }
 
     @Test
@@ -21,6 +21,8 @@ public class StudentFormTest {
 
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
         $("#firstName").setValue("James");
         $("#lastName").setValue("Bond");
         $("#userEmail").setValue("jb@007.gb");
@@ -37,7 +39,7 @@ public class StudentFormTest {
         $("#currentAddress").setValue("Wellington Square, 25");
         $("#react-select-3-input").setValue("ha").pressTab();
         $("#react-select-4-input").setValue("k").pressTab();
-        $("#submit").scrollTo().click();
+        $("#submit").click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(
                 text("James Bond"),
