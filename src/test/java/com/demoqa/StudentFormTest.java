@@ -20,6 +20,7 @@ public class StudentFormTest {
     void fillFormTest() {
 
         open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         $("#firstName").setValue("James");
         $("#lastName").setValue("Bond");
         $("#userEmail").setValue("jb@007.gb");
