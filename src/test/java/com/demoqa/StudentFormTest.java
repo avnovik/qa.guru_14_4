@@ -4,8 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -62,6 +62,10 @@ public class StudentFormTest {
         $("#react-select-3-input").setValue("ha").pressTab();
         $("#react-select-4-input").setValue("k").pressTab();
         $("#submit").click();
+
+        //modal
+        $(".modal-dialog").should(appear);
+
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(
                 text("James Bond"),
@@ -74,6 +78,8 @@ public class StudentFormTest {
 //        $("#table-responsive table").$(byText("Date of Birth"))
 //                .parent().shouldHave(text("21 July,2008"));
         $("#closeLargeModal").click();
-        $(".modal-open").shouldNotBe(visible);
+
+//        $(".modal-open").shouldNotBe(visible);
+        $(".modal-dialog").should(disappear);
     }
 }
